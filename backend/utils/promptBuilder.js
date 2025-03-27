@@ -17,7 +17,11 @@ Here is the raw input:
 ${user_sample_data}`;
 }
 
-export function codeGenerator(user_raw_sample, user_json_sample) {
+export function codeGenerator(
+  user_raw_sample,
+  user_json_sample,
+  user_delimiter
+) {
   return `
         You are a JavaScript code generator for data parsers.
 

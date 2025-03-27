@@ -1,16 +1,19 @@
 // import { useState } from "react";
 import { useState } from "react";
 import "./App.css";
-import CustomButton from "./components/CustomButton/CustomButton";
-import CustomInput from "./components/CustomInput/CustomInput";
+
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import MainPage from "./pages/Main/MainPage";
 
 function App() {
   const [text, setText] = useState("");
   return (
     <>
-      <CustomButton text="hi" />
-      <div>Hello</div>
-      <CustomInput text={text} placeholder="test" setText={setText} />
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<MainPage />} />
+        </Routes>
+      </BrowserRouter>
     </>
   );
 }

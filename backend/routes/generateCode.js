@@ -4,14 +4,14 @@ import { generateCodeFromGPT } from "../services/openAIService.js";
 const router = express.Router();
 
 router.post("/", async (req, res) => {
-  const { samples } = req.body;
+  const { source, target, delimiter } = req.body;
 
-  if (!samples) {
+  if (!source && !target) {
     return res.status(400).json({ error: "Invalid samples" });
   }
 
   try {
-    const jsCode = await generateCodeFromGPT(samples);
+    const jsCode = await generateCodeFromGPT(source, target, delimiter);
     res.json({ jsCode });
   } catch (err) {
     console.error(err);

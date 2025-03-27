@@ -21,8 +21,8 @@ export async function generateJSONFromGPT(samples) {
   return response.choices[0].message.content;
 }
 
-export async function generateCodeFromGPT(samples) {
-  const prompt = codeGenerator(samples.source, samples.target);
+export async function generateCodeFromGPT(source, target, delimiter) {
+  const prompt = codeGenerator(source, target, delimiter);
 
   const response = await openai.chat.completions.create({
     model: "gpt-4o-mini",
