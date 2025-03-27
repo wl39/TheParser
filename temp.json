@@ -1,0 +1,30 @@
+{
+  "question": "자료의 형태별로 최적의 정렬 알고리즘을 짝지었을 때, 옳게 짝지어진 모든 번호를 고르시오.",
+  "options": [
+    {
+      "number": 1,
+      "description": "길이가 모두 같은 문자열 정렬",
+      "algorithm": "기수 정렬(Radix Sort)"
+    },
+    {
+      "number": 2,
+      "description": "어느 정도 정렬이 되어있는 배열",
+      "algorithm": "삽입 정렬(Insertion Sort)"
+    },
+    {
+      "number": 3,
+      "description": "데이터가 매우 많은 경우(10만 개 이상)",
+      "algorithm": "힙 정렬(Heap Sort)"
+    },
+    {
+      "number": 4,
+      "description": "정렬 기준이 2개 일 때",
+      "algorithm": "퀵 정렬(Quick Sort)"
+    },
+    {
+      "number": 5,
+      "description": "중복이 매우 많은 데이터",
+      "algorithm": "퀵 정렬(Quick Sort)"
+    }
+  ]
+}
