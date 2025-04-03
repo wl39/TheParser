@@ -6,18 +6,50 @@ import axios from "axios";
 const MainPage = () => {
   const [text, setText] = useState("");
   const [result, setResult] = useState("");
+  const [delimiter, setDelimiter] = useState("");
+
   const [isParsing, setIsParsing] = useState(false);
+  const [gettingCode, setGettingCode] = useState(false);
+
   const parse = () => {
     setIsParsing(true);
 
     axios
       .post("http://localhost:3001/api/generate-json", { samples: text })
       .then((res) => {
-        console.log(res);
+        setResult(JSON.stringify(res.data, null, 2));
+
+        setIsParsing(false);
+      })
+      .catch((err) => {
+        alert(err);
 
         setIsParsing(false);
       });
   };
+
+  const getCode = () => {
+    setGettingCode(true);
+    console.log(JSON.parse(result));
+
+    axios
+      .post("http://localhost:3001/api/generate-code", {
+        source: text,
+        target: result,
+        delimiter: delimiter,
+      })
+      .then((res) => {
+        console.log(res);
+        console.log(res.data);
+        setGettingCode(false);
+      })
+      .catch((err) => {
+        alert(err);
+
+        setIsParsing(false);
+      });
+  };
+
   return (
     <>
       <CustomInput
@@ -35,7 +67,22 @@ const MainPage = () => {
         type="multiple"
         disabled={true}
       />
-      <CustomButton text="Let's Parse" onClick={parse} disabled={isParsing} />
+      <CustomInput
+        text={delimiter}
+        setText={setDelimiter}
+        placeholder="Delimiter"
+        disabled={result.length === 0}
+        type="text"
+      />
+      {result.length === 0 ? (
+        <CustomButton text="Let's Parse" onClick={parse} disabled={isParsing} />
+      ) : (
+        <CustomButton
+          text="Get the code"
+          onClick={getCode}
+          disabled={gettingCode}
+        />
+      )}
     </>
   );
 };

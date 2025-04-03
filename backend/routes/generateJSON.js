@@ -12,7 +12,7 @@ router.post("/", async (req, res) => {
 
   try {
     const jsCode = await generateJSONFromGPT(samples);
-    res.json({ jsCode });
+    res.json(JSON.parse(jsCode));
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: "GPT CALL FAILED" });
